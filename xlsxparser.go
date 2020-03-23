@@ -12,7 +12,7 @@ type Parser struct {
 	file *excelize.File
 }
 
-func (p *Parser) NewParser(fileName string) (Parser, error) {
+func NewParser(fileName string) (Parser, error) {
 	f, err := excelize.OpenFile(fileName)
 	return Parser{file: f}, err
 }
