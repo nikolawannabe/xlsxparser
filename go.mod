@@ -1,4 +1,4 @@
-module miceplans.net/xlstomobile/parser
+module github.com/nikolawannabe/xlsxparser
 
 go 1.13
 
