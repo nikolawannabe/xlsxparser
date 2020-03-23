@@ -62,7 +62,7 @@ func (p *Parser) parseSheet(sheetKey string) ([]ProductRow, []error) {
 		if row[0] == "Product Name" {
 			continue
 		}
-		product.ProductName = strings.Title(row[0])
+		product.ProductName = strings.Title(strings.ToLower(row[0]))
 		product.Category = row[1]
 		price, err := strconv.ParseFloat(row[2], 64)
 		if err != nil {
