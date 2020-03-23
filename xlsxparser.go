@@ -24,26 +24,26 @@ type ProductRow struct {
 	StockLevel  int     `xlsx:"3"`
 }
 
-type productSheet struct {
-	productRows []ProductRow
-	errors      []error
+type ProductSheet struct {
+	ProductRows []ProductRow
+	Errors      []error
 }
 
-type productTypes map[string]productSheet
+type ProductTypes map[string]ProductSheet
 
-func (p *Parser) ParseFile() (productTypes, bool) {
+func (p *Parser) ParseFile() (ProductTypes, bool) {
 	sheetMap := p.file.GetSheetMap()
-	productTypesList := make(map[string]productSheet, 0)
+	productTypesList := make(map[string]ProductSheet, 0)
 
 	hasErrs := false
 	for _, sheetKey := range sheetMap {
-		var sheet productSheet
+		var sheet ProductSheet
 		products, errList := p.parseSheet(sheetKey)
 		if len(errList) > 0 {
 			hasErrs = true
 		}
-		sheet.productRows = products
-		sheet.errors = errList
+		sheet.ProductRows = products
+		sheet.Errors = errList
 		productTypesList[sheetKey] = sheet
 	}
 
