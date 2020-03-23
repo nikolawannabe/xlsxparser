@@ -51,10 +51,21 @@ func (p *Parser) ParseFile() (ProductTypes, bool) {
 	return productTypesList, hasErrs
 }
 
+func truncateString(str string, num int) string {
+	bnoden := str
+	if len(str) > num {
+		if num > 3 {
+			num -= 3
+		}
+		bnoden = str[0:num] + "..."
+	}
+	return bnoden
+}
+
 func (p *Parser) parseSheet(sheetKey string) ([]ProductRow, []error) {
 	errList := make([]error, 0)
 	// Get all the rows in the Sheet1.
-	rows := p.file.GetRows(sheetKey)
+	rows := p.file.GetRows(truncateString(sheetKey, 31))
 	products := make([]ProductRow, 0)
 	for rowNumber, row := range rows {
 		product := ProductRow{}
