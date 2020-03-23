@@ -17,7 +17,7 @@ func NewParser(fileName string) (Parser, error) {
 	return Parser{file: f}, err
 }
 
-type productRow struct {
+type ProductRow struct {
 	ProductName string  `xlsx:"0"`
 	Category    string  `xlsx:"1"`
 	Price       float64 `xlsx:"2"`
@@ -25,7 +25,7 @@ type productRow struct {
 }
 
 type productSheet struct {
-	productRows []productRow
+	productRows []ProductRow
 	errors      []error
 }
 
@@ -50,13 +50,13 @@ func (p *Parser) ParseFile() (productTypes, bool) {
 	return productTypesList, hasErrs
 }
 
-func (p *Parser) parseSheet(sheetKey string) ([]productRow, []error) {
+func (p *Parser) parseSheet(sheetKey string) ([]ProductRow, []error) {
 	errList := make([]error, 0)
 	// Get all the rows in the Sheet1.
 	rows := p.file.GetRows(sheetKey)
-	products := make([]productRow, 0)
+	products := make([]ProductRow, 0)
 	for rowNumber, row := range rows {
-		product := productRow{}
+		product := ProductRow{}
 
 		if row[0] == "Product Name" {
 			continue
