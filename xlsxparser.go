@@ -31,7 +31,7 @@ type productSheet struct {
 
 type productTypes map[string]productSheet
 
-func (p *Parser) parseFile() (productTypes, bool) {
+func (p *Parser) ParseFile() (productTypes, bool) {
 	sheetMap := p.file.GetSheetMap()
 	productTypesList := make(map[string]productSheet, 0)
 
